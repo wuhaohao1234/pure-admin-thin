@@ -2,7 +2,7 @@ import { message } from "@/utils/message";
 
 // 如果您不习惯tsx写法，可以传slot，然后在template里写
 // 需是hooks写法（函数中有return），避免失去响应性
-export function useColumns() {
+export function useColumns(dialog: any, isEdit: any) {
   const columns: TableColumnList = [
     {
       label: "账户",
@@ -58,9 +58,12 @@ export function useColumns() {
   ];
 
   const handleEdit = (index: number, row) => {
-    message(`您修改了第 ${index} 行，数据为：${JSON.stringify(row)}`, {
-      type: "success"
-    });
+    dialog.value = true;
+    isEdit.value = true;
+    console.log(index, row);
+    // message(`您修改了第 ${index} 行，数据为：${JSON.stringify(row)}`, {
+    //   type: "success"
+    // });
   };
 
   const handleDelete = (index: number, row) => {

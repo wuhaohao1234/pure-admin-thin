@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
-
+import { useRouter } from "vue-router";
+const router = useRouter();
 defineOptions({
   // name 作为一种规范最好必须写上并且和路由的name保持一致
   name: "Query"
@@ -16,6 +17,11 @@ const tableData = [
     name: "李四"
   }
 ];
+const handleScan = () => {
+  router.push({
+    path: "/detail/index"
+  });
+};
 </script>
 
 <template>
@@ -35,7 +41,9 @@ const tableData = [
       <el-table-column prop="name" label="姓名" />
       <el-table-column label="操作">
         <template #default>
-          <el-button link type="primary" size="small">查看</el-button>
+          <el-button link type="primary" size="small" @click="handleScan"
+            >查看</el-button
+          >
         </template>
       </el-table-column>
     </el-table>
